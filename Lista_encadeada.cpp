@@ -189,6 +189,9 @@ public:
 		}
 		return q;
 	}
+	int Length(){
+		return tamanho;
+	}
 
 
 };
