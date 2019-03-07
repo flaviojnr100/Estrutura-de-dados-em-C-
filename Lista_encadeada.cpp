@@ -54,6 +54,18 @@ private:
 			atual = atual->getProximo();
 		}
 	}
+	
+	No* BuscarCedula(int indice){
+		No* atual = primeiro;
+		for (int i = 0; i < tamanho; i++)
+		{
+			if(i==indice){
+				return atual;
+			}
+			atual = atual->getProximo();
+		}
+
+	}
 
 public:
 	Lista_encadeada(){
@@ -191,6 +203,47 @@ public:
 	}
 	int Length(){
 		return tamanho;
+	}
+	
+	void SubString(int indice){
+		if(indice>=0 && indice<tamanho){
+		No* elemento= BuscarCedula(indice);
+		cout<<"["<<elemento->getChave()<<"]"<<endl;
+	}else{
+		cout<<"Erro de indice!!"<<endl;
+	}
+	}
+
+	void SubString(int comeco, int fim){
+
+		if(comeco<fim && fim<tamanho){
+			No* parte1 = BuscarCedula(comeco);
+			No* parte2 = BuscarCedula(fim);
+			cout<<"[";
+			for (int i = 0; i < fim-comeco; i++)
+			{
+				cout<<parte1->getChave();
+				if(i<fim-comeco-1){
+					cout<<", ";
+				}
+				parte1 = parte1->getProximo();
+			}
+			cout<<"]"<<endl;
+		}else if(comeco>fim && comeco<tamanho){
+			No* parte1 = BuscarCedula(comeco);
+			No* parte2 = BuscarCedula(fim);
+			cout<<"[";
+			for(int i=0;i<comeco-fim;i++){
+				cout<<parte1->getChave();
+				if(i<comeco-fim-1){
+					cout<<", ";
+				}
+				parte1 = parte1->getAnterior();
+			}
+			cout<<"]"<<endl;
+		}else{
+			cout<<"Erro de indice!!"<<endl;
+		}
 	}
 
 
